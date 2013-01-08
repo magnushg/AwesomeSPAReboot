@@ -1,6 +1,6 @@
 ﻿ body {
      padding-top: 60px;
-     background-color: #EAEAEA !important;
+     /*background-color: #EAEAEA !important;*/
 }
 
  /*.imageTile {
@@ -41,6 +41,33 @@
   .image-style {
       margin-bottom: 10px;
   }
+
+.nav-tabs {
+    margin-left: 15px !important;
+    margin-right: 30px !important;
+    margin-bottom: 0 !important;
+    border-bottom: 0 !important;
+  }
+
+.tab-content {
+    margin-left: 15px !important;
+    padding-top: 15px !important;
+    margin-right: 30px !important;
+    padding-bottom: 15px !important;
+    margin-bottom: 20px !important;
+    background-color: #EAEAEA;
+    border-bottom-right-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.brand {
+    margin-left: 10px !important;
+}
+
+.nav-tabs > .active > a, .nav-tabs > .active > a:hover {
+    background-color: #EAEAEA !important;
+}
 
 @media (min-width: 481px) and (max-width: 767px) {
     .span3, .imageTile {
