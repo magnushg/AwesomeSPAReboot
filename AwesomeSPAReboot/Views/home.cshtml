@@ -1,5 +1,15 @@
-﻿<section id="home-view" class="hero-unit">
-    <ul data-bind="foreach: messages">
-        <li data-bind="text: $data"></li>
-    </ul>
+﻿<section id="home-view">
+    <div class="loading span9 offset3" data-bind="visible:loading()"></div>
+   
+    <div data-bind="visible:loading() === false">
+         <!-- ko foreach: images-->
+        <div class="span3 imageTile">
+            <div class="polaroid">
+                <a data-bind="attr: { href: link }"><img class="image-style" data-bind="attr: { src: image_standard_res }"/></a>            
+                <span class="user-label" data-bind="text:user"></span>
+             </div>
+        </div>
+        
+        <!-- /ko -->
+     </div>
 </section>

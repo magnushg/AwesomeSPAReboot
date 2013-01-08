@@ -3,7 +3,7 @@
     function ($, ko, vm) {
 
         bind = function () {
-            ko.applyBindings(vm.sample, getView("#home-view"));
+            ko.applyBindings(vm.images, getView("#home-view"));
             },
 
             getView = function (viewName) {

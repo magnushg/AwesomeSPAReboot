@@ -1,3 +1,51 @@
 ﻿ body {
      padding-top: 60px;
+     background-color: #EAEAEA !important;
 }
+
+ /*.imageTile {
+    margin: 10px;
+    border: 5px solid #fff;
+}*/
+
+ .loading {
+     background: url('images/ajax-loader.gif') no-repeat;
+     padding: 10px;
+     margin: auto;
+ }
+
+ .user-label {
+     padding: 5px 2px 5px 4px;
+ }
+
+ .heart-image {
+      background: url('images/heart.png') no-repeat;
+      padding: 10px;
+      display: inline;
+ }
+
+ .image-bottom {
+     display: block;
+     height: 20px;
+     background-color: #fff !important;
+ }
+
+ .polaroid {
+     border: thin solid #d9d9d9;
+     background-color: #fff;
+     padding: 5px 5px 35px 5px;
+     margin-bottom: 20px;
+ }
+
+ .imageTile {
+     background: none;
+     margin: auto;
+ }
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .span3, .imageTile {
+        width: 622px !important;
+        margin: auto !important;
+    }
+}
+
