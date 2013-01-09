@@ -11,6 +11,7 @@
         define('jquery', [], function () { return root.jQuery; });
         define('ko', [], function () { return root.ko; });
         define('toastr', [], function () { return root.toastr; });
+        define('underscore', [], function () { return root._; });
     }
     
     function boot() {

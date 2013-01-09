@@ -16,7 +16,8 @@ namespace AwesomeSPAReboot.App_Start
 
             bundles.Add(new ScriptBundle("~/bundles/vendor").Include(
                 "~/Scripts/knockout-{version}.js",
-                "~/Scripts/toastr.js"));
+                "~/Scripts/toastr.js",
+                "~/Scripts/underscore.js"));
         }
     }
 }
