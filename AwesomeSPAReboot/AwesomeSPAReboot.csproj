@@ -163,6 +163,7 @@
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\images\heart.png" />
     <Content Include="Content\styles.css" />
+    <Content Include="Content\toastr.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\app\ajaxhelper.js" />
     <Content Include="Scripts\app\binder.js" />
@@ -180,6 +181,7 @@
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\r.js" />
     <Content Include="Scripts\require.js" />
+    <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
