@@ -1,6 +1,11 @@
 ﻿define('vm.images', ['ko', 'jquery', 'underscore','dataservice.images', 'model'], function (ko, $, _, dataservice, model) {
     var images = ko.observableArray(),
         loading = ko.observable(false),
+        searchTerm = ko.observable(),
+        performSearch = function() {
+            toastr.success(searchTerm());
+            dataservice.getImages({ success: function (data) { images(data); }, error: function () { } }, searchTerm());
+        },
         init = function() {
             loading(true);
             console.log('loading data...');
@@ -31,6 +36,8 @@
     
     return {
         images: images,
-        loading: loading
+        loading: loading,
+        searchTerm: searchTerm,
+        performSearch: performSearch
     };
 });

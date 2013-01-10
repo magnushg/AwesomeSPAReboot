@@ -1,4 +1,10 @@
 ﻿<section id="home-view">
+    <div class="row">
+        <form class="form-search">
+            <input type="text" class="input-medium search-query" placeholder="Search here" data-bind="value:searchTerm">
+            <button type="submit" class="btn" data-bind="click:performSearch">Search</button>
+        </form>
+    </div>
     <!-- ko foreach: images-->
         <div class="span3 imageTile">
             <div class="polaroid">
@@ -6,5 +12,5 @@
                 <span class="user-label" data-bind="text:user"></span>
              </div>
         </div>
-        <!-- /ko -->
+     <!-- /ko -->
 </section>

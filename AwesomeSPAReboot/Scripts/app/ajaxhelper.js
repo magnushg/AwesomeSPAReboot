@@ -5,7 +5,7 @@
             contentType: "application/json",
             cache: false,
             type: "GET",
-            data: ko.toJSON(data)
+            data: data
         };
         return $.ajax(url, options);
     };

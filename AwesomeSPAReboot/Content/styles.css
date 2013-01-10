@@ -65,6 +65,10 @@
     margin-left: 10px !important;
 }
 
+.form-search input {
+    margin-left: 61px;
+}
+
 .nav-tabs > .active > a, .nav-tabs > .active > a:hover {
     background-color: #EAEAEA !important;
 }

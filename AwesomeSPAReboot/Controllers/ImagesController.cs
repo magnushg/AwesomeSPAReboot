@@ -18,5 +18,11 @@ namespace AwesomeSPAReboot.Controllers
         {
             return _imagesService.GetImagesFromTag("cat").ToList();
         }
+
+        // GET api/values/search
+        public IEnumerable<InstagramBasicData> Get(string searchTerm)
+        {
+            return _imagesService.GetImagesFromTag(searchTerm);
+        }
     }
 }

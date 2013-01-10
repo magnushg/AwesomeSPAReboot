@@ -1,6 +1,8 @@
 ﻿define('dataservice.images', ['ajaxhelper'], function (ajaxhelper) {
-    var getImages = function (callbacks) {
-        ajaxhelper.ajaxRequest('api/images')
+    var getImages = function (callbacks, searchTerm) {
+        var search = { searchTerm: searchTerm };
+        var data = search.searchTerm ? search : searchTerm;
+        ajaxhelper.ajaxRequest('api/images', data)
             .done(callbacks.success)
             .fail(callbacks.error);
     };
