@@ -7,14 +7,14 @@ using Newtonsoft.Json;
 
 namespace AwesomeSPAReboot.Services
 {
-    public interface IInstagramService
+    public interface IImagesService
     {
         IEnumerable<InstagramBasicData> GetImagesFromTag(string searchTerm);
     }
 
-    public class InstagramService : IInstagramService
+    public class ImagesService : IImagesService
     {
-        public InstagramService()
+        public ImagesService()
         {
         }
 
@@ -27,11 +27,11 @@ namespace AwesomeSPAReboot.Services
             var deserializedData = JsonConvert.DeserializeObject<InstagramData>(data);
             var instagramData = deserializedData.data.Select(d => new InstagramBasicData
                                                                       {
-                                                                          Caption = d.caption != null ? d.caption.text : "",
-                                                                          User = d.user != null ? d.user.username : "",
-                                                                          Link = d.link,
-                                                                          Image_standard_res = d.images.standard_resolution.url,
-                                                                          Likes = d.likes.count
+                                                                          caption = d.caption != null ? d.caption.text : "",
+                                                                          user = d.user != null ? d.user.username : "",
+                                                                          link = d.link,
+                                                                          image_standard_res = d.images.standard_resolution.url,
+                                                                          likes = d.likes.count
                                                                       });
             
             return instagramData;
@@ -40,10 +40,10 @@ namespace AwesomeSPAReboot.Services
 
     public class InstagramBasicData
     {
-        public string Caption { get; set; }
-        public string User { get; set; }
-        public string Link { get; set; }
-        public string Image_standard_res { get; set; }
-        public int Likes { get; set; }
+        public string caption { get; set; }
+        public string user { get; set; }
+        public string link { get; set; }
+        public string image_standard_res { get; set; }
+        public int likes { get; set; }
     }
 }

@@ -29,8 +29,8 @@ namespace AwesomeSPAReboot.Services
 
         private void ScheduledNotification(string searchTerm, dynamic caller)
         {
-            IInstagramService instagramService = new InstagramService();
-            var serializedData = JsonConvert.SerializeObject(instagramService.GetImagesFromTag(searchTerm));
+            IImagesService imagesService = new ImagesService();
+            var serializedData = JsonConvert.SerializeObject(imagesService.GetImagesFromTag(searchTerm));
             caller.update(serializedData);
         }
 

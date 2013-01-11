@@ -7,9 +7,9 @@ namespace AwesomeSPAReboot.Controllers
 {
     public class ImagesController : ApiController
     {
-        private IInstagramService _imagesService;
+        private IImagesService _imagesService;
 
-        public ImagesController(IInstagramService imagesService)
+        public ImagesController(IImagesService imagesService)
         {
             _imagesService = imagesService;
         }
