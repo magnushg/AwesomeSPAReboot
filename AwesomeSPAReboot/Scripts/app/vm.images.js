@@ -30,9 +30,27 @@
                 loading(false);
                 console.log('data loaded...');
             });
+        },
+        setupHub = function() {
+            self.updater = $.connection.updateHub;
+            // Declare a function on the chat hub so the server can invoke it
+            self.updater.update = function (message) {
+                var feed = JSON.parse(message);
+                self.instagramFeed(feed);
+            };
+
+            self.updater.updateSearchTerms = function (message) {
+                self.recentSearches(message);
+            };
+
+            // Start the connection
+            $.connection.hub.start(function () {
+                self.updater.listenToSearch("bouvet");
+            });
         };
     
     init();
+    setupHub();
     
     return {
         images: images,

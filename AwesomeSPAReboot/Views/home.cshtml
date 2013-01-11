@@ -6,11 +6,12 @@
         </form>
     </div>
     <!-- ko foreach: images-->
-        <div class="span3 imageTile">
-            <div class="polaroid">
-                <a data-bind="attr: { href: link }"><img class="image-style" data-bind="attr: { src: image_standard_res }"/></a>            
-                <span class="user-label" data-bind="text:user"></span>
-             </div>
+    <div class="span3 imageTile">
+        <div class="polaroid">
+            <a data-bind="attr: { href: link }"><img class="image-style" data-bind="attr: { src: image_standard_res }"/></a>            
+            <span class="user-label" data-bind="text:user"></span>
         </div>
-     <!-- /ko -->
+    </div>
+    <!-- /ko -->
 </section>
+<script type="text/javascript" src="signalr/hubs"></script>

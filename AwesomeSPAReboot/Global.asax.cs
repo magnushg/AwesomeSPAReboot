@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using AwesomeSPAReboot.App_Start;
+using Microsoft.AspNet.SignalR;
 
 namespace AwesomeSPAReboot
 {
@@ -20,6 +21,7 @@ namespace AwesomeSPAReboot
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             GlobalConfig.CustomizeConfig(GlobalConfiguration.Configuration);
+            RouteTable.Routes.MapHubs("~/signalr2");
         }
     }
 }
