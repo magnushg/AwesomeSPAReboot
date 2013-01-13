@@ -2,12 +2,17 @@
     var images = ko.observableArray(),
         loading = ko.observable(false),
         searchTerm = ko.observable(),
+        updates = ko.observable(0),
+        updatesText = ko.computed(function() {
+            return 'updated ' + updates() + ' times';
+        });
         performSearch = function() {
             dataservice.getImages({
                 success: function(data) {
                     images(mapper.map(data));
                     update.listen(searchTerm());
                     toastr.success('Added subscription for search term #' + searchTerm());
+                    updates(0);
                 },
                 error: function () {
                     toastr.error('Failed to perform image search');
@@ -35,6 +40,7 @@
             update.update(function(message) {
                 var feed = JSON.parse(message);
                 images(mapper.map(feed));
+                updates(updates() + 1);
             });
         };
     
@@ -44,6 +50,7 @@
         images: images,
         loading: loading,
         searchTerm: searchTerm,
-        performSearch: performSearch
+        performSearch: performSearch,
+        updatesText: updatesText
     };
 });
