@@ -8,9 +8,15 @@ namespace AwesomeSPAReboot.Services
 {
     public class UpdateHub : Hub
     {
+        private readonly ImagesService _imagesService;
         private static Dictionary<string, ScheduleJob> _scheduledSearches = new Dictionary<string, ScheduleJob>();
         private static List<string> _recentSearches = new List<string>(); 
-        private object _lock = new object();
+        private readonly object _lock = new object();
+
+        public UpdateHub(ImagesService imagesService)
+        {
+            _imagesService = imagesService;
+        }
 
         public void ListenToSearch(string searchTerm)
         {
@@ -29,8 +35,7 @@ namespace AwesomeSPAReboot.Services
 
         private void ScheduledNotification(string searchTerm, dynamic caller)
         {
-            IImagesService imagesService = new ImagesService();
-            var serializedData = JsonConvert.SerializeObject(imagesService.GetImagesFromTag(searchTerm));
+            var serializedData = JsonConvert.SerializeObject(_imagesService.GetImagesFromTag(searchTerm));
             caller.update(serializedData);
         }
 

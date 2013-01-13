@@ -1,7 +1,7 @@
 ﻿using System.Web.Http.Dependencies;
 using Ninject;
 
-namespace AwesomeSPAReboot.App_Start
+namespace AwesomeSPAReboot.App_Start.IoC
 {
     public class NinjectDependencyResolver : NinjectDependencyScope, IDependencyResolver
     {

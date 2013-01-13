@@ -1,7 +1,10 @@
 using System.Web.Http;
 using System;
 using System.Web;
-using AwesomeSPAReboot.App_Start;
+using System.Web.Routing;
+using AwesomeSPAReboot.App_Start.IoC;
+using AwesomeSPAReboot.Services;
+using Microsoft.AspNet.SignalR;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using Ninject;
 using Ninject.Web.Common;
@@ -10,7 +13,7 @@ using Ninject.Extensions.Conventions;
 [assembly: WebActivator.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
 [assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(NinjectWebCommon), "Stop")]
 
-namespace AwesomeSPAReboot.App_Start
+namespace AwesomeSPAReboot.App_Start.IoC
 {
     public static class NinjectWebCommon 
     {
@@ -53,6 +56,10 @@ namespace AwesomeSPAReboot.App_Start
 
             // Tell WebApi how to use our Ninject IoC
             GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
+
+            var signalrDependencyResolver = new SignalrDependencyResolver(kernel);
+            GlobalHost.DependencyResolver = signalrDependencyResolver;
+            RouteTable.Routes.MapHubs(signalrDependencyResolver);
             return kernel;
         }
 
@@ -62,6 +69,7 @@ namespace AwesomeSPAReboot.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind<UpdateHub>().ToSelf().InRequestScope();
         }        
     }
 }
