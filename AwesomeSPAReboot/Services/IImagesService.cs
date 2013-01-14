@@ -9,7 +9,7 @@ namespace AwesomeSPAReboot.Services
 {
     public interface IImagesService
     {
-        IEnumerable<InstagramBasicData> GetImagesFromTag(string searchTerm);
+        IEnumerable<ImageData> GetImagesFromTag(string searchTerm);
     }
 
     public class ImagesService : IImagesService
@@ -18,14 +18,14 @@ namespace AwesomeSPAReboot.Services
         {
         }
 
-        public IEnumerable<InstagramBasicData> GetImagesFromTag(string searchTerm)
+        public IEnumerable<ImageData> GetImagesFromTag(string searchTerm)
         {
             var address = string.Format("https://api.instagram.com/v1/tags/{0}/media/recent?access_token=24613827.f59def8.557cc0f5848b4738b417ef677d2ced5a", searchTerm);
             WebClient client = new WebClient();
             client.Encoding = Encoding.UTF8;
             var data = client.DownloadString(address);
             var deserializedData = JsonConvert.DeserializeObject<InstagramData>(data);
-            var instagramData = deserializedData.data.Select(d => new InstagramBasicData
+            var instagramData = deserializedData.data.Select(d => new ImageData
                                                                       {
                                                                           caption = d.caption != null ? d.caption.text : "",
                                                                           user = d.user != null ? d.user.username : "",
@@ -36,14 +36,5 @@ namespace AwesomeSPAReboot.Services
             
             return instagramData;
         }
-    }
-
-    public class InstagramBasicData
-    {
-        public string caption { get; set; }
-        public string user { get; set; }
-        public string link { get; set; }
-        public string image_standard_res { get; set; }
-        public int likes { get; set; }
     }
 }

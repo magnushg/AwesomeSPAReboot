@@ -6,6 +6,8 @@ using AwesomeSPAReboot.App_Start.IoC;
 using AwesomeSPAReboot.Services;
 using Microsoft.AspNet.SignalR;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using Ninject;
 using Ninject.Web.Common;
 using Ninject.Extensions.Conventions;
@@ -49,11 +51,6 @@ namespace AwesomeSPAReboot.App_Start.IoC
 
             RegisterServices(kernel);
 
-            kernel.Bind(x => x
-             .FromAssembliesMatching("*")
-             .SelectAllClasses()
-             .BindDefaultInterface());
-
             // Tell WebApi how to use our Ninject IoC
             GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
 
@@ -70,6 +67,7 @@ namespace AwesomeSPAReboot.App_Start.IoC
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<UpdateHub>().ToSelf().InRequestScope();
+            kernel.Bind<IImagesService>().To<ImagesService>();
         }        
     }
 }
