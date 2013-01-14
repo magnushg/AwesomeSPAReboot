@@ -8,14 +8,16 @@ namespace AwesomeSPAReboot.Services
 {
     public class UpdateHub : Hub
     {
-        private readonly ImagesService _imagesService;
+        private readonly IImagesService _imagesService;
+        private readonly ISearchRepository _searchRepository;
         private static Dictionary<string, ScheduleJob> _scheduledSearches = new Dictionary<string, ScheduleJob>();
         private static List<string> _recentSearches = new List<string>(); 
         private readonly object _lock = new object();
 
-        public UpdateHub(ImagesService imagesService)
+        public UpdateHub(IImagesService imagesService, ISearchRepository searchRepository)
         {
             _imagesService = imagesService;
+            _searchRepository = searchRepository;
         }
 
         public void ListenToSearch(string searchTerm)

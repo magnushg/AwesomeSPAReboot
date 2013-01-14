@@ -3,6 +3,7 @@ using System;
 using System.Web;
 using System.Web.Routing;
 using AwesomeSPAReboot.App_Start.IoC;
+using AwesomeSPAReboot.Infrastructure;
 using AwesomeSPAReboot.Services;
 using Microsoft.AspNet.SignalR;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
@@ -49,10 +50,10 @@ namespace AwesomeSPAReboot.App_Start.IoC
 
             RegisterServices(kernel);
 
-            kernel.Bind(x => x
-             .FromAssembliesMatching("*")
-             .SelectAllClasses()
-             .BindDefaultInterface());
+            //kernel.Bind(x => x
+            // .FromAssembliesMatching("*")
+            // .SelectAllClasses()
+            // .BindDefaultInterface());
 
             // Tell WebApi how to use our Ninject IoC
             GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
@@ -69,7 +70,10 @@ namespace AwesomeSPAReboot.App_Start.IoC
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Load<RavenDBNinjectModule>();
             kernel.Bind<UpdateHub>().ToSelf().InRequestScope();
+            kernel.Bind<ISearchRepository>().To<SearchRepository>();
+            kernel.Bind<IImagesService>().To<ImagesService>();
         }        
     }
 }
