@@ -1,19 +1,6 @@
 ﻿ body {
      padding-top: 60px;
-     /*background-color: #EAEAEA !important;*/
 }
-
- /*.imageTile {
-    margin: 10px;
-    border: 5px solid #fff;
-}*/
-
- .loading {
-     background: url('images/ajax-loader.gif') no-repeat;
-     padding: 10px;
-     margin: auto;
- }
-
  .imageTile {
      background: none;
      margin: auto;
@@ -71,6 +58,12 @@
 
 .nav-tabs > .active > a, .nav-tabs > .active > a:hover {
     background-color: #EAEAEA !important;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.nav-tabs > li > a {
+    text-transform: uppercase;
 }
 
 @media (min-width: 481px) and (max-width: 767px) {

@@ -1,5 +1,4 @@
-﻿define('model.imageFeed',
-    ['ko'],
+﻿define('model.imageFeed', ['ko'],
     function (ko) {
         var ImageFeed = function () {
             var self = this;

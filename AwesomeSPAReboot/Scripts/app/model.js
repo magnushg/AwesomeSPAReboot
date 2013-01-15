@@ -1,7 +1,4 @@
-﻿define('model',
-    [
-        'model.imageFeed'
-    ],
+﻿define('model', ['model.imageFeed'],
     function (imageFeed) {
         var
             model = {

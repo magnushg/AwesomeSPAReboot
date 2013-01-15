@@ -1,8 +1,7 @@
-﻿define('binder',
-    ['jquery', 'ko', 'vm'],
+﻿define('binder', ['jquery', 'ko', 'vm'],
     function ($, ko, vm) {
 
-        bind = function () {
+        var bind = function () {
             ko.applyBindings(vm.images, getView("#home-view"));
             },
 
