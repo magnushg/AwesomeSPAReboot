@@ -1,6 +1,6 @@
-﻿define('model.imageFeed', ['ko'],
+﻿define('model.image', ['ko'],
     function (ko) {
-        var ImageFeed = function () {
+        var Image = function () {
             var self = this;
             self.caption = ko.observable();
             self.user = ko.observable();
@@ -9,5 +9,5 @@
             self.likes = ko.observable();
             return self;
         };
-        return ImageFeed;
+        return Image;
     });

@@ -1,7 +1,7 @@
-﻿define('mappers.imageFeedMapper', ['model'], function(model) {
-    var map = function(d) {
-        return _.map(d, function(feed) {
-            return new model.ImageFeed()
+﻿define('mappers.imagesMapper', ['model'], function(model) {
+    var map = function(images) {
+        return _.map(images, function(feed) {
+            return new model.Image()
                 .caption(feed.caption)
                 .user(feed.user)
                 .link(feed.link)

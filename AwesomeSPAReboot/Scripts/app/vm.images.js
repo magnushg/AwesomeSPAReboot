@@ -1,9 +1,10 @@
-﻿define('vm.images', ['ko', 'jquery', 'underscore','dataservice.images', 'mappers.imageFeedMapper', 'hubs.updateHub'], function (ko, $, _, dataservice, mapper, update) {
+﻿define('vm.images', ['ko', 'jquery', 'underscore','dataservice.images', 'mappers.imagesMapper', 'hubs.updateHub'], function (ko, $, _, dataservice, mapper, update) {
     var images = ko.observableArray(),
         loading = ko.observable(false),
         searchTerm = ko.observable(),
         updates = ko.observable(0),
-        updatesText = ko.computed(function() {
+
+        updatesText = ko.computed(function () {
             return 'updated ' + updates() + ' times';
         });
         performSearch = function() {

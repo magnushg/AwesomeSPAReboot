@@ -17,9 +17,9 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
@@ -196,8 +196,8 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\app\vm.images.js" />
     <Content Include="Scripts\app\dataservice.images.js" />
-    <Content Include="Scripts\app\model.imageFeed.js" />
-    <Content Include="Scripts\app\mappers.imageFeedMapper.js" />
+    <Content Include="Scripts\app\model.image.js" />
+    <Content Include="Scripts\app\mappers.imagesMapper.js" />
     <Content Include="Scripts\app\hubs.updateHub.js" />
     <None Include="Scripts\jquery-1.8.3.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.3.js" />
@@ -209,6 +209,9 @@
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\r.js" />
     <Content Include="Scripts\require.js" />
+    <Content Include="Scripts\tests\jasmine.js" />
+    <Content Include="Scripts\tests\tests.imageMapper.js" />
+    <Content Include="Scripts\tests\tests.config.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\underscore.js" />
     <Content Include="Scripts\underscore.min.js" />
@@ -225,7 +228,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\tests\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

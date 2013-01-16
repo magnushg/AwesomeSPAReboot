@@ -1,8 +1,8 @@
-﻿define('model', ['model.imageFeed'],
-    function (imageFeed) {
+﻿define('model', ['model.image'],
+    function (image) {
         var
             model = {
-                ImageFeed: imageFeed
+                Image: image
             };
         
         return model;
