@@ -2,7 +2,7 @@
     var updater = $.connection.updateHub;
     setup = function() {
         $.connection.hub.start().done(function () {
-            console.log('SignalR ready!')
+            console.log('SignalR ready!');
         });
     },
     update = function(callback) {
@@ -10,13 +10,13 @@
             callback(message);
         };
     },
-    listen = function(term) {
-        updater.server.listenToSearch(term);
+    subscribe = function (subscribe, term, freq) {
+        subscribe ? updater.server.listenToSearch(term, freq) : updater.server.unsubscribe();
     };
     
     return {
         setup: setup,
         update: update,
-        listen: listen
+        subscribe: subscribe
     };
 });

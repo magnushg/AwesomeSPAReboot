@@ -10,7 +10,6 @@ namespace AwesomeSPAReboot.Services
     {
         private readonly IImagesService _imagesService;
         private static readonly Dictionary<string, ScheduleJob> _scheduledSearches = new Dictionary<string, ScheduleJob>();
-        private static readonly List<string> _recentSearches = new List<string>(); 
         private readonly object _lock = new object();
 
         public UpdateHub(IImagesService imagesService)
@@ -18,19 +17,23 @@ namespace AwesomeSPAReboot.Services
             _imagesService = imagesService;
         }
 
-        public void ListenToSearch(string searchTerm)
+        public void ListenToSearch(string searchTerm, int frequency)
         {
             StopExistingSchedule();
             //var searchRepository = new SearchRepository();
             var schedule = new ScheduleJob(() => ScheduledNotification(searchTerm, Clients.Caller));
-            schedule.Start(TimeSpan.FromSeconds(20).TotalMilliseconds);
+            schedule.Start(TimeSpan.FromSeconds(frequency).TotalMilliseconds);
             lock (_lock)
             {
                 _scheduledSearches.Add(Context.ConnectionId, schedule);
                 //searchRepository.SaveSearch(new Search{Term = searchTerm, TimeStamp = DateTime.Now});
-                _recentSearches.Add(searchTerm);
             }
             //return Clients.All.updateSearchTerms(searchRepository.GetAll().Select(s => s.Term).Distinct().Take(20));
+        }
+
+        public void Unsubscribe()
+        {
+            StopExistingSchedule();
         }
 
         private void ScheduledNotification(string searchTerm, dynamic caller)

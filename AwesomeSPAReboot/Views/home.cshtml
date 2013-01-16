@@ -1,8 +1,12 @@
 ﻿<section id="home-view">
     <div class="row">
-        <form class="form-search">
+        <form class="form-search form-inline">
             <input type="text" class="input-medium search-query" placeholder="Search here" data-bind="value:searchTerm">
-            <button type="submit" class="btn" data-bind="click:performSearch">Search</button>
+            <button type="submit" class="btn-primary" data-bind="click:performSearch">Search</button>
+            <label class="checkbox">
+                <input type="checkbox" data-bind="checked: subscribe"> Subscribe to feed
+            </label>
+            <input type="text" class="input-mini" placeholder="secs" data-bind="value: updateFreq"/><span>s</span>
             <strong data-bind="text:updatesText"></strong>
         </form>
     </div>

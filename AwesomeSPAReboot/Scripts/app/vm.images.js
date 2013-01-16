@@ -1,49 +1,62 @@
-﻿define('vm.images', ['ko', 'jquery', 'underscore','dataservice.images', 'mappers.imagesMapper', 'hubs.updateHub'], function (ko, $, _, dataservice, mapper, update) {
+﻿define('vm.images', ['ko', 'jquery', 'underscore','dataservice.images', 'mappers.imagesMapper', 'hubs.updateHub'], function (ko, $, _, dataservice, mapper, updateHub) {
     var images = ko.observableArray(),
         loading = ko.observable(false),
         searchTerm = ko.observable(),
         updates = ko.observable(0),
-
-        updatesText = ko.computed(function () {
+        subscribe = ko.observable(false),
+        updateFreq = ko.observable(20),
+        updatesText = ko.computed(function() {
             return 'updated ' + updates() + ' times';
-        });
+        }),
+        
+        searchCallbacks = {
+            success: function (data) {
+                images(mapper.map(data));
+                subscriptionCheck();
+                updates(0);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        },
         performSearch = function() {
-            dataservice.getImages({
-                success: function(data) {
-                    images(mapper.map(data));
-                    update.listen(searchTerm());
-                    toastr.success('Added subscription for search term #' + searchTerm());
-                    updates(0);
-                },
-                error: function () {
-                    toastr.error('Failed to perform image search');
-                }
-            }, searchTerm());
-            
+            dataservice.getImages(searchCallbacks, searchTerm());
+        },
+        subscriptionCheck = function() {
+            updateHub.subscribe(subscribe(), searchTerm(), updateFreq());
+            subscribe() && showSubscriptionAddedMessage();
+        },
+        showSubscriptionAddedMessage = function() {
+            toastr.success('Added subscription for search term #' + searchTerm() + ' every ' + updateFreq() + ' secs');
         },
         init = function() {
+            searchTerm('cat');
             loading(true);
-            console.log('loading data...');
-            $.when(dataservice.getImages(
-                {
-                    success: function(data) {
-                        images(mapper.map(data));
-                    },
-                    error: function(err) {
-                        console.log(err);
-                    }
-                }
+
+            $.when(
+                dataservice.getImages(searchCallbacks, searchTerm()
             )).then(function() {
                 loading(false);
-                console.log('data loaded...');
             });
-            update.setup();
-            update.update(function(message) {
+            setupHub();
+        },
+        setupHub = function() {
+            updateHub.setup();
+            updateHub.update(function (message) {
                 var feed = JSON.parse(message);
                 images(mapper.map(feed));
                 updates(updates() + 1);
             });
         };
+
+    subscribe.subscribe(function() {
+        subscriptionCheck();
+    });
+    updateFreq.subscribe(function() {
+        subscriptionCheck();
+    });
+    
+
     
     init();
     
@@ -52,6 +65,8 @@
         loading: loading,
         searchTerm: searchTerm,
         performSearch: performSearch,
-        updatesText: updatesText
+        updatesText: updatesText,
+        subscribe: subscribe,
+        updateFreq: updateFreq
     };
 });
