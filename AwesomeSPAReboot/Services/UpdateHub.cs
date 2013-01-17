@@ -9,6 +9,7 @@ namespace AwesomeSPAReboot.Services
     public class UpdateHub : Hub
     {
         private readonly IImagesService _imagesService;
+
         private static readonly Dictionary<string, ScheduleJob> _scheduledSearches = new Dictionary<string, ScheduleJob>();
         private readonly object _lock = new object();
 
