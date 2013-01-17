@@ -19,7 +19,7 @@ namespace AwesomeSPAReboot.App_Start
                 "~/Scripts/toastr.js",
                 "~/Scripts/underscore.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/app").Include("~/Scripts/app*"));
+            bundles.Add(new ScriptBundle("~/bundles/app").IncludeDirectory("~/Scripts/app/", "*.js"));
         }
     }
 }
