@@ -77,6 +77,7 @@ namespace AwesomeSPAReboot.App_Start.IoC
             kernel.Bind<UpdateHub>().ToSelf().InRequestScope();
             kernel.Bind<ISearchRepository>().To<SearchRepository>();
             kernel.Bind<IImagesService>().To<ImagesService>();
+            kernel.Bind<IConfigurationProvider>().To<ConfigurationProvider>().InSingletonScope();
         }        
     }
 }

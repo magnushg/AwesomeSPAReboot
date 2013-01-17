@@ -14,24 +14,26 @@ namespace AwesomeSPAReboot.Services
 
     public class ImagesService : IImagesService
     {
-        public ImagesService()
+        private readonly IConfigurationProvider _configurationProvider;
+
+        public ImagesService(IConfigurationProvider configurationProvider)
         {
+            _configurationProvider = configurationProvider;
         }
 
         public IEnumerable<ImageData> GetImagesFromTag(string searchTerm)
         {
-            var address = string.Format("https://api.instagram.com/v1/tags/{0}/media/recent?access_token=24613827.f59def8.557cc0f5848b4738b417ef677d2ced5a", searchTerm);
-            WebClient client = new WebClient();
-            client.Encoding = Encoding.UTF8;
+            var address = string.Format(_configurationProvider.GetConfigurationFor("SearchTagUrl"), searchTerm);
+            var client = new WebClient {Encoding = Encoding.UTF8};
             var data = client.DownloadString(address);
             var deserializedData = JsonConvert.DeserializeObject<InstagramData>(data);
-            var instagramData = deserializedData.data.Select(d => new ImageData
+            var instagramData = deserializedData.data.Select(image => new ImageData
                                                                       {
-                                                                          caption = d.caption != null ? d.caption.text : "",
-                                                                          user = d.user != null ? d.user.username : "",
-                                                                          link = d.link,
-                                                                          image_standard_res = d.images.standard_resolution.url,
-                                                                          likes = d.likes.count
+                                                                          caption = image.caption != null ? image.caption.text : "",
+                                                                          user = image.user != null ? image.user.username : "",
+                                                                          link = image.link,
+                                                                          image_standard_res = image.images.standard_resolution.url,
+                                                                          likes = image.likes.count
                                                                       });
             
             return instagramData;
