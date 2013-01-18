@@ -220,7 +220,7 @@
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\r.js" />
     <Content Include="Scripts\require.js" />
-    <Content Include="Scripts\tests\jasmine.js" />
+    <Content Include="Scripts\jasmine.js" />
     <Content Include="Scripts\tests\tests.imageMapper.js" />
     <Content Include="Scripts\tests\tests.config.js" />
     <Content Include="Scripts\toastr.js" />
@@ -236,6 +236,7 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="Scripts\tests\tests.api.images.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

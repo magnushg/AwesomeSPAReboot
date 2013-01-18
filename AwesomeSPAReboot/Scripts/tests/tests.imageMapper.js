@@ -1,5 +1,5 @@
 ﻿///<reference path="tests.config.js"/>
-///<reference path="jasmine.js"/>
+///<reference path="../jasmine.js"/>
 
 require(['mappers.imagesMapper'], function (mapper) {
     describe("With image mapper", function() {
