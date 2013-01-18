@@ -8,11 +8,16 @@ namespace AwesomeSPAReboot.Services
 {
     public class ConfigurationProvider : IConfigurationProvider
     {
-        private readonly Dictionary<string, dynamic> _config = new Dictionary<string, dynamic>();
+        private readonly Dictionary<string, string> _config = new Dictionary<string, string>();
 
         public ConfigurationProvider()
+            : this(new Dictionary<string, string> {{"SearchTagUrl", ConfigurationManager.AppSettings["InstagramAPISearchHashtag"] ?? string.Empty}})
         {
-            _config.Add("SearchTagUrl", ConfigurationManager.AppSettings["InstagramAPISearchHashtag"] ?? string.Empty);
+        }
+
+        internal ConfigurationProvider(Dictionary<string, string> config)
+        {
+            _config = config;
         }
 
         public string GetConfigurationFor(string config)
