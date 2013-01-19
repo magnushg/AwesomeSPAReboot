@@ -237,6 +237,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Scripts\tests\tests.api.images.js" />
+    <Content Include="Views\ImagesModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -268,7 +269,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>54737</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:53822/</IISUrl>
+          <IISUrl>http://localhost:1337</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

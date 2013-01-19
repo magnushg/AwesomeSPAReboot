@@ -4,9 +4,12 @@
             return new model.Image()
                 .caption(feed.caption)
                 .user(feed.user)
+                .userProfilePicture(feed.userProfilePicture)
+                .userRealName(feed.userRealName)
                 .link(feed.link)
                 .image_standard_res(feed.image_standard_res)
-                .likes(feed.likes);
+                .likes(feed.likes)
+                .tags(feed.tags);
         });
     };
     return {

@@ -8,10 +8,27 @@
         updatesText = ko.computed(function() {
             return 'updated ' + updates() + ' times';
         }),
-        
+        currentImage = ko.observable(),
+        selectedTags = ko.observableArray([{ tag: '' }]),
+        setCurrentImage = function (image) {
+            currentImage(image);
+        },
+        setupTagFilterList = function () {
+            return _.chain(images())
+                .map(function(image) {
+                    return image.tags();
+                })
+                .flatten()
+                .uniq()
+                .map(function(tag) {
+                    return { tag: tag };
+                })
+                .value();
+        },
         searchCallbacks = {
             success: function (data) {
                 images(mapper.map(data));
+                selectedTags(setupTagFilterList());
                 subscriptionCheck();
                 updates(0);
             },
@@ -56,8 +73,6 @@
         subscriptionCheck();
     });
     
-
-    
     init();
     
     return {
@@ -67,6 +82,9 @@
         performSearch: performSearch,
         updatesText: updatesText,
         subscribe: subscribe,
-        updateFreq: updateFreq
+        updateFreq: updateFreq,
+        currentImage: currentImage,
+        setCurrentImage: setCurrentImage,
+        selectedTags: selectedTags
     };
 });
