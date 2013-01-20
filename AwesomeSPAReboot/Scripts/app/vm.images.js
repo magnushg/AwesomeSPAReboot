@@ -43,6 +43,9 @@
             updateHub.subscribe(subscribe(), searchTerm(), updateFreq());
             subscribe() && showSubscriptionAddedMessage();
         },
+        toggleAutomaticUpdates = function () {
+            subscribe(!subscribe());
+        },
         showSubscriptionAddedMessage = function() {
             toastr.success('Added subscription for search term #' + searchTerm() + ' every ' + updateFreq() + ' secs');
         },
@@ -85,6 +88,7 @@
         updateFreq: updateFreq,
         currentImage: currentImage,
         setCurrentImage: setCurrentImage,
-        selectedTags: selectedTags
+        selectedTags: selectedTags,
+        toggleAutomaticUpdates: toggleAutomaticUpdates
     };
 });

@@ -2,7 +2,7 @@
     function ($, ko, vm) {
 
         var bind = function () {
-            ko.applyBindings(vm.images, getView("#home-view"));
+            ko.applyBindings(vm.images, getView("#main-view"));
             },
 
             getView = function (viewName) {

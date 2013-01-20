@@ -2,8 +2,8 @@
     var run = function() {
 
         binder.bind();
+        toastr.options.positionClass = 'toast-bottom-right';
         toastr.success('Application loaded', 'Message');
-        //console.log('application started...');
     };
     
     return {

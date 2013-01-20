@@ -1,94 +1,118 @@
 ﻿ body {
      padding-top: 60px;
-     background-color: #eaeaea !important;
+     background-color: #000 !important;
 }
  .imageTile {
      background: none;
      margin: auto;
  }
 
- .polaroid {
-     border: thin solid #d9d9d9;
-     background-color: #f2f2f2;
-     padding: 5px 5px 35px 5px;
-     margin-bottom: 20px;
+ .container-fluid {
+     margin: auto !important;
+     padding: 0 !important;
  }
 
-  .user-label {
-      padding-left: 5px;
-      color: #444;
-      font-weight: bold;
+ #home-view .span4 {
+     margin: 0 !important;
  }
 
-  .heart-image {
-      background: url('images/heart.png') no-repeat;
-      padding: 10px;
-      display: inline;
+ .heart-image {
+     background: url('images/heart.png') no-repeat;
+     padding: 10px;
+     display: inline;
  }
 
-  .image-style {
-      margin-bottom: 10px;
-  }
+ .modal-body {
+     max-height: 800px !important;
+ }
 
-  .modal-header h3 img {
-      height: 35px;
-      width: 35px;
-      border: solid thin #d9d9d9;
-      margin-right: 5px;
-  }
+ .modal-header h3 img {
+     height: 35px;
+     width: 35px;
+     border: solid thin #d9d9d9;
+     margin-right: 5px;
+ }
 
-  .modal-body img {
-      margin-bottom: 5px;
-      border: solid thin #d9d9d9
-  }
+ .modal-body img {
+     margin-bottom: 5px;
+     border: solid thin #d9d9d9
+ }
 
-.nav-tabs {
-    margin-left: 30px !important;
-    margin-right: 30px !important;
-    margin-bottom: 0 !important;
-    border-bottom: 0 !important;
-  }
+ .nav-tabs {
+     margin-left: 30px !important;
+     margin-right: 30px !important;
+     margin-bottom: 0 !important;
+     border-bottom: 0 !important;
+ }
 
-.tab-content {
-    margin-left: 15px !important;
-    padding-top: 15px !important;
-    margin-right: 30px !important;
-    padding-bottom: 15px !important;
-    margin-bottom: 20px !important;
-    background-color: #fff;
-    border-radius: 12px;
-    border: solid thin #e2e2e2;
-}
+ .tab-content {
+     margin-left: 15px !important;
+     padding-top: 15px !important;
+     margin-right: 30px !important;
+     padding-bottom: 15px !important;
+     margin-bottom: 20px !important;
+     background-color: #fff;
+     border-radius: 12px;
+     border: solid thin #e2e2e2;
+ }
 
-.brand {
-    margin-left: 10px !important;
-}
+ .brand {
+     margin-left: 10px !important;
+ }
 
-.form-search input {
-    margin-left: 61px;
-}
+ .form-search input {
+     margin-left: 61px;
+ }
 
-.nav-tabs > .active > a, .nav-tabs > .active > a:hover {
-    background-color: #fff !important;
-    font-weight: bold;
-    text-transform: uppercase;
-    border-top: solid thin #e2e2e2 !important;
-    border-left: solid thin #e2e2e2 !important;
-    border-right: solid thin #e2e2e2 !important;
-}
-
-.nav-tabs > li > a {
-    text-transform: uppercase;
-}
-
-@media (min-width: 481px) and (max-width: 767px) {
+ @media (min-width: 481px) and (max-width: 767px) {
     .span3, .imageTile {
         width: 622px !important;
         margin: auto !important;
     }
 }
 
-.modal-body {
-    max-height: 800px !important;
+/* Extra Large desktop */
+@media (min-width: 1500px) {
+    .container-fluid {
+        width: 1480px;
+    }
+
+ }
+/* Large desktop */
+@media (min-width: 1200px) and (max-width: 1499px){
+    .container-fluid {
+        width: 1110px;
+    }
+
+ }
+
+/* Desktop */
+@media (min-width: 980px) and (max-width: 1199px){
+     .container-fluid {
+        width: 900px;
+    }
+
+ }
+ 
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {
+    .container-fluid {
+        width: 684px;
+    }
+    .modal-body {
+        max-height: 600px !important;
+    }
+
+ }
+ 
+/* Landscape phone to portrait tablet */
+@media (min-width: 481px) and (max-width: 767px) {
+    
 }
+ 
+/* Landscape phones and down */
+@media (max-width: 480px) {
+
+
+ }
 

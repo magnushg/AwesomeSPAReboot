@@ -1,20 +1,9 @@
 ﻿<section id="home-view">
-    <div class="row">
-        <form class="form-search form-inline">
-            <input type="text" class="input-medium search-query" placeholder="Search here" data-bind="value:searchTerm">
-            <button type="submit" class="btn-primary" data-bind="click:performSearch">Search</button>
-            <label class="checkbox">
-                <input type="checkbox" data-bind="checked: subscribe"> Subscribe to feed
-            </label>
-            <input type="text" class="input-mini" placeholder="secs" data-bind="value: updateFreq"/><span>s</span>
-        </form>
-    </div>
     <!-- ko foreach: images-->
-    <div class="span3 imageTile">
-        <div class="polaroid">
-            <a href="#imagesModal" data-toggle="modal" data-bind="click: $root.setCurrentImage"><img class="image-style" data-bind="attr: { src: image_standard_res }"/></a>
-            <span class="user-label" data-bind="text:user"></span>
-        </div>
+    <div class="imageTile span4">
+        <a href="#imagesModal" data-toggle="modal" data-bind="click: $root.setCurrentImage">
+            <img data-bind="attr: { src: image_standard_res }"/>
+        </a>
     </div>
     <!-- /ko -->
     @RenderPage("ImagesModal.cshtml");
