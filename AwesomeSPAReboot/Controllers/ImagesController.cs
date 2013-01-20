@@ -17,13 +17,13 @@ namespace AwesomeSPAReboot.Controllers
 
         public IEnumerable<ImageData> Get()
         {
-            return _imagesService.GetImagesFromTag("cat").ToList();
+            return _imagesService.GetImages("cat").ToList();
         }
 
         // GET api/values/search
         public IEnumerable<ImageData> Get(string searchTerm)
         {
-            return _imagesService.GetImagesFromTag(searchTerm);
+            return _imagesService.GetImages(searchTerm);
         }
     }
 }

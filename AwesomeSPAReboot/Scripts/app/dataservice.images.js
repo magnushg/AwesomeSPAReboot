@@ -2,7 +2,7 @@
     var getImages = function (callbacks, searchTerm) {
         var search = { searchTerm: searchTerm };
         var data = search.searchTerm ? search : searchTerm;
-        ajaxhelper.ajaxRequest('api/images', data)
+        return ajaxhelper.ajaxRequest('api/images', data)
             .done(callbacks.success)
             .fail(callbacks.error);
     };
