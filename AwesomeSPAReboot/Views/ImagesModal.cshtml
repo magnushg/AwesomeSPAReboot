@@ -7,8 +7,9 @@
   <div class="modal-body">
       <p></p>
       <img data-bind="attr: { src: image_standard_res }"/>
+      <div class="heart-image"><strong data-bind="text:likes"></strong></div>
       <!-- ko foreach: tags -->
-      <span class="badge" data-bind="text:$data"></span>
+      <span class="label label-inverse" data-bind="text:$data"></span>
       <!-- /ko -->
   </div>
   <div class="modal-footer">

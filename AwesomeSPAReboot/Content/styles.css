@@ -18,8 +18,12 @@
 
  .heart-image {
      background: url('images/heart.png') no-repeat;
-     padding: 10px;
-     display: inline;
+     padding-bottom: 12px;
+     display: block;
+ }
+
+ .heart-image strong{
+     padding-left: 33px;
  }
 
  .modal-body {

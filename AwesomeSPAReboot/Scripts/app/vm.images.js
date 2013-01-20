@@ -2,14 +2,18 @@
     var images = ko.observableArray(),
         loading = ko.observable(false),
         searchTerm = ko.observable(),
-        updates = ko.observable(0),
-        subscribe = ko.observable(false),
-        updateFreq = ko.observable(20),
-        updatesText = ko.computed(function() {
-            return 'updated ' + updates() + ' times';
-        }),
+        automaticUpdates = ko.observable(false),
+        updateFrequencies = ko.observableArray(['20', '40', '60', '120', '240']),
+        updateFrequency = ko.observable(20),
         currentImage = ko.observable(),
         selectedTags = ko.observableArray([{ tag: '' }]),
+
+        automaticUpdatesText = ko.computed(function () {
+            return automaticUpdates() ? 'Turn automatic updates off' : 'Turn automatic updates on';
+        }),
+        updateFrequencyText = ko.computed(function () {
+            return 'Update frequency ' + updateFrequency() + ' secs';
+        }),
         setCurrentImage = function (image) {
             currentImage(image);
         },
@@ -30,7 +34,6 @@
                 images(mapper.map(data));
                 selectedTags(setupTagFilterList());
                 subscriptionCheck();
-                updates(0);
             },
             error: function (err) {
                 console.log(err);
@@ -40,14 +43,17 @@
             dataservice.getImages(searchCallbacks, searchTerm());
         },
         subscriptionCheck = function() {
-            updateHub.subscribe(subscribe(), searchTerm(), updateFreq());
-            subscribe() && showSubscriptionAddedMessage();
+            updateHub.subscribe(automaticUpdates(), searchTerm(), updateFrequency());
+            automaticUpdates() && showAutomaticUpdatesMessage();
         },
         toggleAutomaticUpdates = function () {
-            subscribe(!subscribe());
+            automaticUpdates(!automaticUpdates());
         },
-        showSubscriptionAddedMessage = function() {
-            toastr.success('Added subscription for search term #' + searchTerm() + ' every ' + updateFreq() + ' secs');
+        showAutomaticUpdatesMessage = function() {
+            toastr.success('Activated automatic updates for search term #' + searchTerm() + ' every ' + updateFrequency() + ' secs');
+        },
+        setUpdateFrequency = function(frequency) {
+            updateFrequency(frequency);
         },
         init = function() {
             searchTerm('cat');
@@ -65,14 +71,13 @@
             updateHub.update(function (message) {
                 var feed = JSON.parse(message);
                 images(mapper.map(feed));
-                updates(updates() + 1);
             });
         };
 
-    subscribe.subscribe(function() {
+    automaticUpdates.subscribe(function () {
         subscriptionCheck();
     });
-    updateFreq.subscribe(function() {
+    updateFrequency.subscribe(function () {
         subscriptionCheck();
     });
     
@@ -83,12 +88,14 @@
         loading: loading,
         searchTerm: searchTerm,
         performSearch: performSearch,
-        updatesText: updatesText,
-        subscribe: subscribe,
-        updateFreq: updateFreq,
+        automaticUpdatesText: automaticUpdatesText,
+        automaticUpdates: automaticUpdates,
+        updateFrequencies: updateFrequencies,
+        updateFrequencyText: updateFrequencyText,
         currentImage: currentImage,
         setCurrentImage: setCurrentImage,
         selectedTags: selectedTags,
-        toggleAutomaticUpdates: toggleAutomaticUpdates
+        toggleAutomaticUpdates: toggleAutomaticUpdates,
+        setUpdateFrequency: setUpdateFrequency
     };
 });
