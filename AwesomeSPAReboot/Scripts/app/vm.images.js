@@ -49,7 +49,7 @@
             automaticUpdates(!automaticUpdates());
         },
         showAutomaticUpdatesMessage = function() {
-            toastr.success('Activated automatic updates for search term #' + searchTerm() + ' every ' + updateFrequency() + ' secs');
+            toastr.success('Activated automatic updates for search term ' + searchTerm() + ' every ' + updateFrequency() + ' secs');
         },
         setUpdateFrequency = function(frequency) {
             updateFrequency(frequency);
@@ -77,7 +77,7 @@
         },
         mapAndSetImages = function(data) {
             loading(true);
-            images(data);
+            images(mapper.map(data));
             loading(false);
         };
 
