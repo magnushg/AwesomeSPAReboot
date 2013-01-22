@@ -55,7 +55,7 @@
             updateFrequency(frequency);
         },
         init = function() {
-            searchTerm('cat');
+            searchTerm('bouvet');
             getImages();
             setupHub();
         },
