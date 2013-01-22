@@ -12,11 +12,13 @@ namespace AwesomeSPAReboot.Services
     public class ImagesService : IImagesService
     {
         private readonly IConfigurationProvider _configurationProvider;
+        private readonly ISearchRepository _searchRepository;
         private Dictionary<string, Func<string, IEnumerable<ImageData>>> _searchTypes; 
 
-        public ImagesService(IConfigurationProvider configurationProvider)
+        public ImagesService(IConfigurationProvider configurationProvider, ISearchRepository searchRepository)
         {
             _configurationProvider = configurationProvider;
+            _searchRepository = searchRepository;
             _searchTypes = new Dictionary<string, Func<string, IEnumerable<ImageData>>>
                                {
                                    {"#", TagSearch},
