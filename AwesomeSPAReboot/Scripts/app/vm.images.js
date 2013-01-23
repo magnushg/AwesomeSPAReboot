@@ -6,8 +6,8 @@
         updateFrequencies = ko.observableArray(['20', '40', '60', '120', '240']),
         updateFrequency = ko.observable(20),
         currentImage = ko.observable(),
-        selectedTags = ko.observableArray([{ tag: '' }]),
-        automaticUpdatesText = ko.computed(function() {
+        recentSearches = ko.observableArray(),
+        automaticUpdatesText = ko.computed(function () {
             return automaticUpdates() ? 'Turn automatic updates off' : 'Turn automatic updates on';
         }),
         updateFrequencyText = ko.computed(function() {
@@ -31,7 +31,6 @@
         searchCallbacks = {
             success: function(data) {
                 mapAndSetImages(data);
-                selectedTags(setupTagFilterList());
                 subscriptionCheck();
             },
             error: function(err) {
@@ -39,6 +38,10 @@
             }
         },
         performSearch = function() {
+            getImages();
+        },
+        searchFor = function(term) {
+            searchTerm(term);
             getImages();
         },
         subscriptionCheck = function() {
@@ -74,6 +77,9 @@
                 var feed = JSON.parse(message);
                 mapAndSetImages(feed);
             });
+            updateHub.updateSearchTerms(function(message) {
+                recentSearches(message);
+            });
         },
         mapAndSetImages = function(data) {
             loading(true);
@@ -101,8 +107,9 @@
         updateFrequencyText: updateFrequencyText,
         currentImage: currentImage,
         setCurrentImage: setCurrentImage,
-        selectedTags: selectedTags,
         toggleAutomaticUpdates: toggleAutomaticUpdates,
-        setUpdateFrequency: setUpdateFrequency
+        setUpdateFrequency: setUpdateFrequency,
+        recentSearches: recentSearches,
+        searchFor: searchFor
     };
 });

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.SignalR.Hubs;
 using Newtonsoft.Json;
@@ -9,27 +10,27 @@ namespace AwesomeSPAReboot.Services
     public class UpdateHub : Hub
     {
         private readonly IImagesService _imagesService;
+        private readonly ISearchRepository _searchRepository;
 
         private static readonly Dictionary<string, ScheduleJob> _scheduledSearches = new Dictionary<string, ScheduleJob>();
         private readonly object _lock = new object();
 
-        public UpdateHub(IImagesService imagesService)
+        public UpdateHub(IImagesService imagesService, ISearchRepository searchRepository)
         {
             _imagesService = imagesService;
+            _searchRepository = searchRepository;
         }
 
         public void ListenToSearch(string searchTerm, int frequency)
         {
             StopExistingSchedule();
-            //var searchRepository = new SearchRepository();
             var schedule = new ScheduleJob(() => ScheduledNotification(searchTerm, Clients.Caller));
             schedule.Start(TimeSpan.FromSeconds(frequency).TotalMilliseconds);
             lock (_lock)
             {
                 _scheduledSearches.Add(Context.ConnectionId, schedule);
-                //searchRepository.SaveSearch(new Search{Term = searchTerm, TimeStamp = DateTime.Now});
             }
-            //return Clients.All.updateSearchTerms(searchRepository.GetAll().Select(s => s.Term).Distinct().Take(20));
+            Clients.All.updateSearchTerms(_searchRepository.GetAll().Select(s => s.Term).Distinct().Take(20));
         }
 
         public void Unsubscribe()

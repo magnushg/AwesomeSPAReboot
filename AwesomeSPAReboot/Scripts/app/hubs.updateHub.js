@@ -1,7 +1,7 @@
 ﻿define('hubs.updateHub', [], function() {
     var updater = $.connection.updateHub;
     setup = function() {
-        $.connection.hub.start().done(function () {
+        $.connection.hub.start().done(function() {
             console.log('SignalR ready!');
         });
     },
@@ -10,13 +10,21 @@
             callback(message);
         };
     },
-    subscribe = function (subscribe, term, freq) {
+    updateSearchTerms = function (callback) {
+        updater.client.updateSearchTerms = function (message) {
+            callback(message);
+        };
+    },
+    subscribe = function(subscribe, term, freq) {
         subscribe ? updater.server.listenToSearch(term, freq) : updater.server.unsubscribe();
     };
+    
     
     return {
         setup: setup,
         update: update,
-        subscribe: subscribe
+        updateSearchTerms: updateSearchTerms,
+        subscribe: subscribe,
+        
     };
 });

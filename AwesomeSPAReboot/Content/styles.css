@@ -22,12 +22,19 @@
      display: block;
  }
 
+ .spinner {
+     background: url('images/spinner.gif') no-repeat;
+     height: 12px;
+     margin-top: 7px;
+     margin-right: 10px;
+ }
+
  .heart-image strong{
      padding-left: 33px;
  }
 
  .modal-body {
-     max-height: 800px !important;
+     max-height: 450px !important;
  }
 
  .modal-header h3 img {
@@ -86,10 +93,6 @@
     .container-fluid {
         width: 684px;
     }
-    .modal-body {
-        max-height: 600px !important;
-    }
-
  }
  
 /* Landscape phone to portrait tablet */

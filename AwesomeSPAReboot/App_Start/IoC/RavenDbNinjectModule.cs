@@ -29,7 +29,7 @@ namespace AwesomeSPAReboot.App_Start.IoC
                }.Initialize();
            }).InSingletonScope();
 
-            Bind<IDocumentSession>().ToMethod(context => context.Kernel.Get<IDocumentStore>().OpenSession()).InRequestScope();
+            Bind<IDocumentSession>().ToMethod(context => context.Kernel.Get<IDocumentStore>().OpenSession()).InTransientScope();
         }
     }
 }
