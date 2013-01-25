@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using AwesomeSPAReboot.Infrastructure;
 using AwesomeSPAReboot.Models.Contracts;
 using AwesomeSPAReboot.Services;
 using NUnit.Framework;
+using Raven.Client.Document;
 
 namespace AwesomeSPAReboot.Tests
 {
@@ -28,7 +30,7 @@ namespace AwesomeSPAReboot.Tests
                                                                                                    AppConstants.SEARCH_USER_IMAGES_URL_KEY,
                                                                                                    "https://api.instagram.com/v1/users/{0}/media/recent/?access_token=24613827.f59def8.557cc0f5848b4738b417ef677d2ced5a"
                                                                                                }
-                                                                                           }));
+                                                                                           }), new SearchRepository(new DocumentStore{ConnectionStringName = "RavenDb"}.OpenSession()));
         }
 
         [Test]

@@ -3,43 +3,34 @@ using System.Linq;
 using AwesomeSPAReboot.Infrastructure;
 using AwesomeSPAReboot.Models;
 using NUnit.Framework;
+using Raven.Client.Document;
 
 namespace AwesomeSPAReboot.Tests
 {
     [TestFixture]
     public class RavenTest
     {
-        [Test]
-        public void CanInitializeRaven()
+        private SearchRepository _searchRepository;
+ 
+        [SetUp]
+        public void Setup()
         {
-            var searchRepository = new SearchRepository();
+             _searchRepository = new SearchRepository(new DocumentStore{ConnectionStringName = "RavenDb"}.Initialize().OpenSession());
         }
 
         [Test]
         public void CanSaveToRaven()
         {
-            var searchRepository = new SearchRepository();
             var search = new Search
                              {
                                  Term = "Bouvet",
                              };
-            searchRepository.SaveSearch(search);
-        }
-
-        [Test]
-        public void CanRetrieveDataFromRaven()
-        {
-            var searchRepository = new SearchRepository();
-            var result = searchRepository.GetById("searches/1");
-
-            Assert.That(result, Is.Not.Null);
-            Assert.That(result.Term, Is.EqualTo("Bouvet"));
+            _searchRepository.SaveSearch(search);
         }
 
         [Test]
         public void CanInsertMultipleSearches()
         {
-            var searchRepository = new SearchRepository();
             var searches = new List<Search>
                                {
                                    new Search
@@ -52,14 +43,13 @@ namespace AwesomeSPAReboot.Tests
                                        }
 
                                };
-            searchRepository.SaveSearches(searches.ToArray());
+            _searchRepository.SaveSearches(searches.ToArray());
         }
 
         [Test]
         public void CanRetrieveMultipleSearches()
         {
-            var searchRepository = new SearchRepository();
-            var result = searchRepository.GetAll();
+            var result = _searchRepository.GetAll();
 
             Assert.That(result, Is.Not.Null);
             Assert.That(result.Count(), Is.GreaterThan(0));

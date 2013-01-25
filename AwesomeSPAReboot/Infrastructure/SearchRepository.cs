@@ -37,5 +37,11 @@ namespace AwesomeSPAReboot.Infrastructure
         {
             return _session.Query<Search>().ToArray();
         }
+
+        public Search[] GetTop20()
+        {
+            return _session.Query<Search>().ToArray(); //.Distinct().Take(20).ToArray();
+            //
+        }
     }
 }

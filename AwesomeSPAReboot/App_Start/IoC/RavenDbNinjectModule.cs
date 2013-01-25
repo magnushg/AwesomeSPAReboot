@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Web;
-using Ninject;
-using Ninject.Activation;
+﻿using Ninject;
 using Ninject.Modules;
-using Ninject.Web.Common;
 using Raven.Client;
 using Raven.Client.Document;
 

@@ -8,5 +8,6 @@ namespace AwesomeSPAReboot.Services
         Search GetById(string id);
         void SaveSearches(Search[] searches);
         Search[] GetAll();
+        Search[] GetTop20();
     }
 }

@@ -30,7 +30,13 @@ namespace AwesomeSPAReboot.Services
             {
                 _scheduledSearches.Add(Context.ConnectionId, schedule);
             }
-            Clients.All.updateSearchTerms(_searchRepository.GetAll().Select(s => s.Term).Distinct().Take(20));
+        }
+
+        public void PublishSearches()
+        {
+            var searches =
+                _searchRepository.GetAll().GroupBy(s => s.Term).OrderByDescending(g => g.Count()).Select(g => g.Key);
+            Clients.All.updateSearchTerms(searches);
         }
 
         public void Unsubscribe()
