@@ -11,18 +11,15 @@ namespace AwesomeSPAReboot.App_Start.IoC
         public override void Load()
         {
             Bind<IDocumentStore>()
-           .ToMethod(context =>
-           {
-               return new DocumentStore
-               {
-                   //Url = "https://1.ravenhq.com/databases/magnusg-stuff",
-                   //ApiKey = "b4b7973f-50be-49a5-9f0f-62c2b43e491e"
-                   ConnectionStringName = "RavenDb"
+           .ToMethod(context => new DocumentStore
+                                    {
+                                        //Url = "https://1.ravenhq.com/databases/magnusg-stuff",
+                                        //ApiKey = "b4b7973f-50be-49a5-9f0f-62c2b43e491e"
+                                        ConnectionStringName = "RavenDb"
                    
-               }.Initialize();
-           }).InSingletonScope();
+                                    }.Initialize()).InSingletonScope();
 
-            Bind<IDocumentSession>().ToMethod(context => context.Kernel.Get<IDocumentStore>().OpenSession()).InTransientScope();
+            //Bind<IDocumentSession>().ToMethod(context => context.Kernel.Get<IDocumentStore>().OpenSession()).InTransientScope();
         }
     }
 }

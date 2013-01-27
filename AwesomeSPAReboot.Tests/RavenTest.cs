@@ -15,7 +15,7 @@ namespace AwesomeSPAReboot.Tests
         [SetUp]
         public void Setup()
         {
-             _searchRepository = new SearchRepository(new DocumentStore{ConnectionStringName = "RavenDb"}.Initialize().OpenSession());
+             _searchRepository = new SearchRepository(new DocumentStore{ConnectionStringName = "RavenDb"}.Initialize());
         }
 
         [Test]

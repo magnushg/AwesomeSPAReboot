@@ -1,47 +1,57 @@
-﻿using System.Linq;
+﻿using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 using AwesomeSPAReboot.Models;
 using AwesomeSPAReboot.Services;
 using Raven.Client;
 using Raven.Client.Document;
+using Raven.Client.Document.Async;
 
 namespace AwesomeSPAReboot.Infrastructure
 {
     public class SearchRepository : ISearchRepository
     {
-        private readonly IDocumentSession _session;
+        private readonly IDocumentStore _documentStore;
 
-        public SearchRepository(IDocumentSession session)
+        public SearchRepository(IDocumentStore documentStore)
         {
-            _session = session;
+            _documentStore = documentStore;
         }
 
         public void SaveSearch(Search search)
         {
-            _session.Store(search);
-            _session.SaveChanges();
+            using (var session = _documentStore.OpenSession())
+            {
+                session.Store(search);
+                session.SaveChanges();
+            }
+           
         }
 
         public Search GetById(string id)
         {
-            return _session.Load<Search>(id);
+            using (var session = _documentStore.OpenSession())
+            {
+                return session.Load<Search>(id);
+            }
         }
 
         public void SaveSearches(Search[] searches)
         {
 
-            searches.ToList().ForEach(_session.Store);
-            _session.SaveChanges();
+            using (var session = _documentStore.OpenSession())
+            {
+                searches.ToList().ForEach(session.Store);
+                session.SaveChanges();
+            }
         }
 
         public Search[] GetAll()
         {
-            return _session.Query<Search>().ToArray();
-        }
-
-        public Search[] GetTop20()
-        {
-            return _session.Query<Search>().ToArray(); //.Distinct().Take(20).ToArray();
-            //
+            using (var session = _documentStore.OpenSession())
+            {
+                return session.Query<Search>().ToArray();
+            }
         }
     }
 }

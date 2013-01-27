@@ -30,7 +30,7 @@ namespace AwesomeSPAReboot.Tests
                                                                                                    AppConstants.SEARCH_USER_IMAGES_URL_KEY,
                                                                                                    "https://api.instagram.com/v1/users/{0}/media/recent/?access_token=24613827.f59def8.557cc0f5848b4738b417ef677d2ced5a"
                                                                                                }
-                                                                                           }), new SearchRepository(new DocumentStore{ConnectionStringName = "RavenDb"}.OpenSession()));
+                                                                                           }), new SearchRepository(new DocumentStore{ConnectionStringName = "RavenDb"}.Initialize()));
         }
 
         [Test]
