@@ -4,7 +4,9 @@
         automaticUpdates = ko.observable(false),
         updateFrequency = ko.observable(20),
         currentImage = ko.observable(),
-        setCurrentImage = function(image) {
+        active = ko.observable(false),
+        name = "Home",
+        setCurrentImage = function (image) {
             currentImage(image);
         },
         setupTagFilterList = function() {
@@ -78,6 +80,8 @@
         setCurrentImage: setCurrentImage,
         searchFor: searchFor,
         updateFrequency: updateFrequency,
-        init: init
+        init: init,
+        active: active,
+        name: name
     };
 });

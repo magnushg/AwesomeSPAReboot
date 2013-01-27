@@ -29,6 +29,9 @@
             </a>
             <a class="brand" href="#">Awesome SPA</a>
             <div class="nav-collapse collapse">
+                <ul class="nav" data-bind="foreach:modules">
+                    <li data-bind="css: {active:active}"><a href="#" data-bind="text:name, click: $root.activateModule"></a></li>
+                </ul>
                 <ul class="nav pull-right">
                     <li data-bind="visible:loading">
                         <a href="#" class="spinner"></a>@*<a href="#">Loading...</a>*@
@@ -64,6 +67,7 @@
     </div>
     <div class="container-fluid">
         @RenderPage("Views/home.cshtml")
+        @RenderPage("Views/stats.cshtml")
     </div>
    
 

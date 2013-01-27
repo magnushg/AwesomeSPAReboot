@@ -1,29 +1,48 @@
-﻿define('vm.shell', ['ko', 'jquery', 'underscore', 'model', 'hubs.updateHub', 'vm.images'], function(ko, $, _, model, updateHub, imagesVm) {
+﻿define('vm.shell', ['ko', 'jquery', 'underscore', 'hubs.updateHub', 'vm.images', 'vm.stats'], function(ko, $, _, updateHub, imagesVm, statsVm) {
     var recentSearches = ko.observableArray(),
         loading = ko.observable(false),
+        modules = ko.observableArray(),
         automaticUpdates = ko.observable(false),
         updateFrequencies = ko.observableArray(['20', '40', '60', '120', '240']),
         updateFrequency = ko.observable(20),
         searchTerm = ko.observable(),
-        automaticUpdatesText = ko.computed(function () {
-            return automaticUpdates() ? 'Turn automatic updates off' : 'Turn automatic updates on';
+        automaticUpdatesText = ko.computed(function() {
+            return automaticUpdates() ? 'Automatic updates on' : 'Automatic updates';
         }),
-        updateFrequencyText = ko.computed(function () {
-            return 'Update frequency ' + updateFrequency() + ' secs';
-        }),
-        init = function() {
+        init = function () {
             setupHub();
             imagesVm.init();
+            statsVm.init();
+            registerModules();
+            imagesVm.active(true);
         },
-        setupHub = function() {
-            updateHub.updateSearchTerms(function(message) {
+        updateFrequencyText = ko.computed(function() {
+            return 'Update freq. ' + updateFrequency() + ' secs';
+        }),
+        registerModules = function () {
+            var modulesMapped = _.map([imagesVm, statsVm], function(viewModels) {
+                return { name: viewModels.name, active: viewModels.active };
+            });
+            modules(modulesMapped);
+        },
+        activateModule = function(module) {
+            _.each(modules(), function(m) {
+                m.active(false);
+            });
+            var selectedModule = _.filter(modules(), function (m) {
+                return m.name === module.name;
+            });
+            selectedModule[0].active(true);           
+        },
+        setupHub = function () {
+            updateHub.updateSearchTerms(function (message) {
                 recentSearches(message);
             });
         },
         performSearch = function() {
             imagesVm.getImages(loading);
         },
-        searchFor = function (term) {
+        searchFor = function(term) {
             searchTerm(term);
             imagesVm.getImages(loading);
         },
@@ -40,7 +59,7 @@
     automaticUpdates.subscribe(function(newValue) {
         imagesVm.automaticUpdates(newValue);
     });
-    updateFrequency.subscribe(function (newValue) {
+    updateFrequency.subscribe(function(newValue) {
         imagesVm.updateFrequency(newValue);
     });
 
@@ -57,6 +76,8 @@
         setUpdateFrequency: setUpdateFrequency,
         toggleAutomaticUpdates: toggleAutomaticUpdates,
         automaticUpdatesText: automaticUpdatesText,
-        updateFrequencyText: updateFrequencyText
+        updateFrequencyText: updateFrequencyText,
+        modules: modules,
+        activateModule: activateModule
     };
-})
+});

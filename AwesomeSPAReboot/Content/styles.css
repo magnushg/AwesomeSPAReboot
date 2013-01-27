@@ -46,7 +46,7 @@
 
  .modal-body img {
      margin-bottom: 5px;
-     border: solid thin #d9d9d9
+     border: solid thin #d9d9d9;
  }
 
  .modal-body .label a {
@@ -61,6 +61,12 @@
 
  .form-search input {
      margin-left: 61px;
+ }
+
+ #chartcontainer {
+     height: 100%;
+     width: 100%;
+     max-width: 1480px;
  }
 
  @media (min-width: 481px) and (max-width: 767px) {

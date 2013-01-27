@@ -1,7 +1,8 @@
-﻿define('vm', ['vm.shell', 'vm.images'],
-    function (shell, images) {
+﻿define('vm', ['vm.shell', 'vm.images', 'vm.stats'],
+    function(shell, images, stats) {
         return {
             images: images,
-            shell: shell
+            shell: shell,
+            stats: stats
         };
-    })
+    });

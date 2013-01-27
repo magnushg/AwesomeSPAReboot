@@ -4,6 +4,7 @@
         var bind = function () {
             ko.applyBindings(vm.shell, getView("#main-view"));
             ko.applyBindings(vm.images, getView("#home-view"));
+            ko.applyBindings(vm.stats, getView("#stats-view"));
         },
 
             getView = function (viewName) {
