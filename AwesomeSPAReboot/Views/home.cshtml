@@ -1,6 +1,6 @@
 ﻿<section id="home-view" data-bind="visible: active">
     <!-- ko foreach: images-->
-    <div class="imageTile span4" data-bind="simplePopup:caption">
+    <div class="imageTile span4">
         <a href="#imagesModal" data-toggle="modal" data-bind="click: $root.setCurrentImage">
             <img data-bind="attr: { src: image_standard_res }"/>
         </a>

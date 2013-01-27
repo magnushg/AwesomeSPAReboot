@@ -4,7 +4,7 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3><img data-bind="attr: {src: userProfilePicture}"/><span data-bind="text: userNameFormatted"></span></h3>
   </div>
-  <div class="modal-body">
+  <div class="modal-body" data-bind="simplePopup: caption">
       <p></p>
       <img data-bind="attr: { src: image_standard_res }"/>
       <div class="heart-image"><strong data-bind="text:likes"></strong></div>

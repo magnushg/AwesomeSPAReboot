@@ -64,7 +64,7 @@
  }
 
  #chartcontainer {
-     max-height: 800px;
+     height: 800px;
      width: 100%;
      max-width: 1480px;
  }

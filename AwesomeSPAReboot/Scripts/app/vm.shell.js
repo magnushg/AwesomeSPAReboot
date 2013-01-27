@@ -46,6 +46,7 @@
         searchFor = function(term) {
             searchTerm(term);
             imagesVm.getImages(loading);
+            activateModule(imagesVm);
         },
         setUpdateFrequency = function(frequency) {
             updateFrequency(frequency);
