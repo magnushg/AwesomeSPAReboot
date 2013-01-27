@@ -77,6 +77,10 @@
                     }]
             });
         };
+
+    active.subscribe(function(newValue) {
+        newValue && init();
+    });
     
     return {
         hello: hello,

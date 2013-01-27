@@ -46,7 +46,7 @@ namespace AwesomeSPAReboot.Services
 
         private void ScheduledNotification(string searchTerm, dynamic caller)
         {
-            var serializedData = JsonConvert.SerializeObject(_imagesService.GetImages(searchTerm));
+            var serializedData = JsonConvert.SerializeObject(_imagesService.GetImages(searchTerm, true));
             caller.update(serializedData);
         }
 

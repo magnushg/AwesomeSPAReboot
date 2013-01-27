@@ -5,6 +5,6 @@ namespace AwesomeSPAReboot.Services
 {
     public interface IImagesService
     {
-        IEnumerable<ImageData> GetImages(string searchTerm);
+        IEnumerable<ImageData> GetImages(string searchTerm, bool scheduled = false);
     }
 }

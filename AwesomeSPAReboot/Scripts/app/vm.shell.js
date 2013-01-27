@@ -41,6 +41,7 @@
         },
         performSearch = function() {
             imagesVm.getImages(loading);
+            activateModule(imagesVm);
         },
         searchFor = function(term) {
             searchTerm(term);

@@ -20,7 +20,7 @@ namespace AwesomeSPAReboot.Controllers
         // GET api/searchstats
         public IEnumerable<dynamic> Get()
         {
-            return _searchRepository.GetAll().GroupBy(s => s.Term).OrderByDescending(g => g.Count()).Select(g => new {term = g.Key, count = g.Count()});
+            return _searchRepository.GetAll().GroupBy(s => s.Term.ToLower().Trim(new[]{'#'})).OrderByDescending(g => g.Count()).Select(g => new {term = g.Key, count = g.Count()});
         }
 
         // GET api/searchstats/5

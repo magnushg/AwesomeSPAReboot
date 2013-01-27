@@ -27,10 +27,13 @@ namespace AwesomeSPAReboot.Services
                                };
         }
 
-        public IEnumerable<ImageData> GetImages(string searchTerm)
+        public IEnumerable<ImageData> GetImages(string searchTerm, bool scheduled = false)
         {
             var searchType = searchTerm.Substring(0, 1);
-            _searchRepository.SaveSearch(new Search {Term = searchTerm, TimeStamp = DateTime.Now});
+            if (!scheduled)
+            {
+                _searchRepository.SaveSearch(new Search {Term = searchTerm, TimeStamp = DateTime.Now});
+            }
 
             var instagramData = _searchTypes.ContainsKey(searchType) ? _searchTypes[searchType](searchTerm.Trim(searchType.ToCharArray())) : _searchTypes["default"](searchTerm);
 
