@@ -40,12 +40,12 @@
             toastr.success('Activated automatic updates for search term ' + searchTerm() + ' every ' + updateFrequency() + ' secs');
         },
         getImages = function(loadingIndicator) {
-            loadingIndicator(true);
+            loadingIndicator && loadingIndicator(true);
 
             $.when(
                 dataservice.getImages(searchCallbacks, searchTerm()
                 )).then(function() {
-                    loadingIndicator(false);
+                    loadingIndicator && loadingIndicator(false);
                     updateHub.publishSearches();
                 });
         },

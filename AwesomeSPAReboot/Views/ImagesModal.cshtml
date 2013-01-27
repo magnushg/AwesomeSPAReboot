@@ -9,7 +9,7 @@
       <img data-bind="attr: { src: image_standard_res }"/>
       <div class="heart-image"><strong data-bind="text:likes"></strong></div>
       <!-- ko foreach: tags -->
-      <span class="label label-inverse" data-bind="text:$data"></span>
+      <span class="label label-inverse"><a href="#" data-bind="text: $data, click: $parents[1].searchFor" data-dismiss="modal"></a></span>
       <!-- /ko -->
   </div>
   <div class="modal-footer">

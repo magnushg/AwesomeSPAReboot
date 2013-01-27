@@ -49,6 +49,11 @@
      border: solid thin #d9d9d9
  }
 
+ .modal-body .label a {
+     text-decoration: none;
+     color: white;
+ }
+
  .brand {
      margin-left: 10px !important;
      text-transform: uppercase;
