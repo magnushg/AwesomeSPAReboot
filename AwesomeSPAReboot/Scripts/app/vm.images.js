@@ -1,18 +1,9 @@
 ﻿define('vm.images', ['ko', 'jquery', 'underscore','dataservice.images', 'mappers.imagesMapper', 'hubs.updateHub'], function (ko, $, _, dataservice, mapper, updateHub) {
     var images = ko.observableArray(),
-        loading = ko.observable(false),
         searchTerm = ko.observable(),
         automaticUpdates = ko.observable(false),
-        updateFrequencies = ko.observableArray(['20', '40', '60', '120', '240']),
         updateFrequency = ko.observable(20),
         currentImage = ko.observable(),
-        recentSearches = ko.observableArray(),
-        automaticUpdatesText = ko.computed(function() {
-            return automaticUpdates() ? 'Turn automatic updates off' : 'Turn automatic updates on';
-        }),
-        updateFrequencyText = ko.computed(function() {
-            return 'Update frequency ' + updateFrequency() + ' secs';
-        }),
         setCurrentImage = function(image) {
             currentImage(image);
         },
@@ -37,9 +28,6 @@
                 console.log(err);
             }
         },
-        performSearch = function() {
-            getImages();
-        },
         searchFor = function(term) {
             searchTerm(term);
             getImages();
@@ -48,39 +36,27 @@
             updateHub.subscribe(automaticUpdates(), searchTerm(), updateFrequency());
             automaticUpdates() && showAutomaticUpdatesMessage();
         },
-        toggleAutomaticUpdates = function() {
-            automaticUpdates(!automaticUpdates());
-        },
         showAutomaticUpdatesMessage = function() {
             toastr.success('Activated automatic updates for search term ' + searchTerm() + ' every ' + updateFrequency() + ' secs');
         },
-        setUpdateFrequency = function(frequency) {
-            updateFrequency(frequency);
-        },
-        getImages = function() {
-            loading(true);
+        getImages = function(loadingIndicator) {
+            loadingIndicator(true);
 
             $.when(
                 dataservice.getImages(searchCallbacks, searchTerm()
                 )).then(function() {
-                    loading(false);
+                    loadingIndicator(false);
                     updateHub.publishSearches();
                 });
         },
         setupHub = function() {
-            updateHub.setup();
             updateHub.update(function(message) {
                 var feed = JSON.parse(message);
                 mapAndSetImages(feed);
             });
-            updateHub.updateSearchTerms(function(message) {
-                recentSearches(message);
-            });
         },
         mapAndSetImages = function(data) {
-            loading(true);
             images(mapper.map(data));
-            loading(false);
         },
         init = function() {
             setupHub();
@@ -92,25 +68,16 @@
     updateFrequency.subscribe(function() {
         subscriptionCheck();
     });
-   
-    
-
-    init();
     
     return {
         images: images,
-        loading: loading,
         searchTerm: searchTerm,
-        performSearch: performSearch,
-        automaticUpdatesText: automaticUpdatesText,
+        getImages: getImages,
         automaticUpdates: automaticUpdates,
-        updateFrequencies: updateFrequencies,
-        updateFrequencyText: updateFrequencyText,
         currentImage: currentImage,
         setCurrentImage: setCurrentImage,
-        toggleAutomaticUpdates: toggleAutomaticUpdates,
-        setUpdateFrequency: setUpdateFrequency,
-        recentSearches: recentSearches,
-        searchFor: searchFor
+        searchFor: searchFor,
+        updateFrequency: updateFrequency,
+        init: init
     };
 });

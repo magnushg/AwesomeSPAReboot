@@ -1,7 +1,11 @@
-﻿define('bootstrapper', ['ko', 'binder', 'toastr'], function(ko, binder, toastr) {
+﻿define('bootstrapper', ['ko', 'binder', 'toastr', 'hubs.updateHub', 'vm'], function(ko, binder, toastr, updateHub, vm) {
     var run = function() {
 
-        binder.bind();
+        $.when(updateHub.setup())
+            .done(vm.shell.init())
+            .done(binder.bind());
+            
+        
         toastr.options.positionClass = 'toast-bottom-right';
         toastr.success('Application loaded', 'Message');
     };

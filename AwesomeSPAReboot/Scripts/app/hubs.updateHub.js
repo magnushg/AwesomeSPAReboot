@@ -1,9 +1,7 @@
 ﻿define('hubs.updateHub', [], function() {
     var updater = $.connection.updateHub;
     setup = function() {
-        $.connection.hub.start().done(function() {
-            console.log('SignalR ready!');
-        });
+        return $.connection.hub.start();
     },
     update = function(callback) {
         updater.client.update = function(message) {
