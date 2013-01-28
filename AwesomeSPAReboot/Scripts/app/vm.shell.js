@@ -7,7 +7,7 @@
         updateFrequency = ko.observable(20),
         searchTerm = ko.observable(),
         automaticUpdatesText = ko.computed(function() {
-            return automaticUpdates() ? 'Automatic updates on' : 'Automatic updates';
+            return automaticUpdates() ? 'Updates on' : 'Updates';
         }),
         init = function () {
             setupHub();
@@ -17,7 +17,7 @@
             imagesVm.active(true);
         },
         updateFrequencyText = ko.computed(function() {
-            return 'Update freq. ' + updateFrequency() + ' secs';
+            return 'Freq. ' + updateFrequency() + ' secs';
         }),
         registerModules = function () {
             var modulesMapped = _.map([imagesVm, statsVm], function(viewModels) {

@@ -1,4 +1,5 @@
 ﻿<section id="home-view" data-bind="visible: active">
+    <div class="help-text" data-bind="visible: images().length === 0">Search to see the awesomeness</div>
     <!-- ko foreach: images-->
     <div class="imageTile span4">
         <a href="#imagesModal" data-toggle="modal" data-bind="click: $root.setCurrentImage">

@@ -1,7 +1,24 @@
 ﻿ body {
      padding-top: 60px;
      background-color: #000 !important;
+     font-family: 'Droid Sans', sans-serif !important;
 }
+
+ input {
+     font-family: 'Droid Sans', sans-serif !important;
+ }
+
+ .btn-primary {
+     font-family: 'Droid Sans', sans-serif !important;
+ }
+
+ .label {
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    border-radius: 0px !important; 
+    font-weight: normal !important;
+ }
+
  .imageTile {
      background: none;
      margin: auto;
@@ -33,8 +50,37 @@
      padding-left: 33px;
  }
 
- .modal-body {
-     max-height: 450px !important;
+ .brand {
+     margin-left: 10px !important;
+     /*text-transform: uppercase;*/
+     font-family: 'Alfa Slab One', cursive;
+ }
+
+ .form-search input {
+     margin-left: 61px;
+ }
+
+ #chartcontainer {
+     height: 800px;
+     width: 100%;
+     max-width: 1480px;
+ }
+
+ .help-text {
+     color: #515151;
+     margin: auto;
+     font-size: 48px;
+     font-family: 'Droid Sans Mono', sans-serif;
+ }
+
+ li a .icon-refresh {
+     margin-right: 3px;
+     margin-left: 3px;
+ }
+
+ li a .icon-user {
+     margin-right: 3px;
+     margin-left: 3px;
  }
 
  .modal-header h3 img {
@@ -54,32 +100,18 @@
      color: white;
  }
 
- .brand {
-     margin-left: 10px !important;
-     text-transform: uppercase;
- }
-
- .form-search input {
-     margin-left: 61px;
- }
-
- #chartcontainer {
-     height: 800px;
-     width: 100%;
-     max-width: 1480px;
- }
-
- @media (min-width: 481px) and (max-width: 767px) {
-    .span3, .imageTile {
-        width: 622px !important;
-        margin: auto !important;
-    }
-}
-
 /* Extra Large desktop */
 @media (min-width: 1500px) {
     .container-fluid {
         width: 1480px;
+    }
+
+    .modal-body {
+     max-height: 800px !important;
+    }
+
+     .help-text {
+        width: 966px;
     }
 
  }
@@ -87,6 +119,14 @@
 @media (min-width: 1200px) and (max-width: 1499px){
     .container-fluid {
         width: 1110px;
+    }
+
+    .modal-body {
+        max-height: 800px !important;
+    }
+
+     .help-text {
+        width: 966px;
     }
 
  }
@@ -97,6 +137,21 @@
         width: 900px;
     }
 
+     .modal-body {
+        max-height: 450px !important;
+    }
+
+     .modal-body img {
+         width: 350px;
+         height: 350px;
+         margin-left: 85px;
+
+    }
+
+      .help-text {
+        width: 846px;
+    }
+
  }
  
 /* Portrait tablet to landscape and desktop */
@@ -104,16 +159,53 @@
     .container-fluid {
         width: 684px;
     }
+
+     .modal-body {
+        max-height: 350px !important;
+    }
+
+     .modal-body img {
+         width: 250px;
+         height: 250px;
+         margin-left: 85px;
+
+    }
+
+    .help-text {
+        width: 515px;
+        font-size: 28px;
+    }
  }
  
 /* Landscape phone to portrait tablet */
 @media (min-width: 481px) and (max-width: 767px) {
+     .span3, .imageTile {
+        width: 622px !important;
+        margin: auto !important;
+    } 
     
+    .modal-body {
+        max-height: 350px !important;
+    }
+
+     .modal-body img {
+         width: 250px;
+         height: 250px;
+         margin-left: 85px;
+
+    }
+
+      .help-text {
+        width: 427px;
+        font-size: 23px;
+    }
 }
  
 /* Landscape phones and down */
 @media (max-width: 480px) {
-
-
+    .help-text {
+        width: 350px;
+        font-size: 17px;
+    }
  }
 

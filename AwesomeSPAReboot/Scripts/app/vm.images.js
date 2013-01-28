@@ -9,18 +9,6 @@
         setCurrentImage = function (image) {
             currentImage(image);
         },
-        setupTagFilterList = function() {
-            return _.chain(images())
-                .map(function(image) {
-                    return image.tags();
-                })
-                .flatten()
-                .uniq()
-                .map(function(tag) {
-                    return { tag: tag };
-                })
-                .value();
-        },
         searchCallbacks = {
             success: function(data) {
                 mapAndSetImages(data);
