@@ -7,7 +7,7 @@ namespace AwesomeSPAReboot.App_Start
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                       "~/Scripts/jquery-{version}.js", "~/Scripts/jquery.signalR-1.0.0-rc1.js"));
+                       "~/Scripts/jquery-{version}.js", "~/Scripts/jquery.signalR-1.0.0-rc2.js"));
             
             bundles.Add(new StyleBundle("~/Content/styles").Include("~/Content/styles.css", "~/Content/toastr.css"));
             

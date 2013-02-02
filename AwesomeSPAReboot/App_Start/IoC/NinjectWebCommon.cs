@@ -60,10 +60,9 @@ namespace AwesomeSPAReboot.App_Start.IoC
 
             // Tell WebApi how to use our Ninject IoC
             GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
-
-            var signalrDependencyResolver = new SignalrDependencyResolver(kernel);
+           var signalrDependencyResolver = new SignalrDependencyResolver(kernel);
             GlobalHost.DependencyResolver = signalrDependencyResolver;
-            RouteTable.Routes.MapHubs(signalrDependencyResolver);
+            RouteTable.Routes.MapHubs();
             return kernel;
         }
 
