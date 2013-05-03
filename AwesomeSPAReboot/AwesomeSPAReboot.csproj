@@ -234,6 +234,7 @@
     <Content Include="Scripts\app\hubs.updateHub.js" />
     <Content Include="Scripts\app\ko.bindingHandlers.js" />
     <Content Include="Scripts\highcharts.js" />
+    <None Include="Properties\PublishProfiles\awesome-spa.pubxml" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.0.js" />
     <Content Include="Scripts\jquery-1.9.0.min.js" />
@@ -261,7 +262,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Scripts\tests\tests.api.images.js" />
     <Content Include="Views\ImagesModal.cshtml" />
     <Content Include="Views\stats.cshtml" />
     <Content Include="Scripts\jquery-1.9.0.min.map" />
